@@ -24,6 +24,7 @@ public class Client {
 		TaskIntf taskIntf = new TaskImpl();
 		try {
 			serverIntf = (ServerIntf) Naming.lookup("Hello");
+			
 			byte[] code = getClassDefinition("client.TaskImpl");
 			serverIntf.execute("client.TaskImpl", code);
 		} catch (NotBoundException | MalformedURLException | RemoteException e) {

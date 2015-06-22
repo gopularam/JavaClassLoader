@@ -3,10 +3,8 @@ package basic;
 import static java.lang.System.out;
 
 /**
- * Class loading basic example
+ * Classloader basic example
  * 
- * @author bgopular
- *
  */
 public class Hello {
 
@@ -26,17 +24,33 @@ public class Hello {
 		out.println("SimpleObj classloader:" + simpleObject.getClass().getClassLoader());
 		
 		out.println("MyThread classloader:" + thread.getContextClassLoader());
+		
+		thread.setContextClassLoader(new MyCL());
+		
+		out.println("MyThread classloader:" + thread.getContextClassLoader());
+
 	}
 
+	
 	protected class Simple {
 	}
 
+	
+	protected class MyCL extends ClassLoader {
+		public MyCL() {
+			super();
+		}
+		public String toString() {
+			return "MyClassLoader";
+		}
+	}
+	
 	protected class MyThread implements Runnable {
 		public void run() {
 			out.println("MyThread.run()");
 		}
 	}
-
+	
 	public static void main(String[] main) {
 		Hello first = new Hello();
 		first.test();
