@@ -1,0 +1,23 @@
+{
+  "name": "bhanu",
+  "version": "1.0.0",
+  "description": "coding",
+  "main": ".",
+  "scripts": {
+    "test": "npm -v"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gopularam/developer.git"
+  },
+  "keywords": [
+    "coding",
+    "bhanu"
+  ],
+  "author": "bhanu prakash",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gopularam/developer/issues"
+  },
+  "homepage": "https://github.com/gopularam/developer#readme"
+}
