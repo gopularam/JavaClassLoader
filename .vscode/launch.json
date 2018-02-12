@@ -1,0 +1,22 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+
+        {
+            //"port": 3000,
+            "name": "Launch server.js via nodemon",
+            "type": "node",
+            "request": "launch",
+            "runtimeExecutable": "node",
+            "program": "${workspaceFolder}/webapp/nodejs_mongodb/server.js",
+            "restart": true,
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen",
+            "autoAttachChildProcesses": true
+
+        }
+    ]
+}

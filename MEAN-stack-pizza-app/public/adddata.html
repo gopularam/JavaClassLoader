@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<head>
+    <link rel = "stylesheet" type = "text/css" href = "css/styles.css" />
+  </head>
+
+<body>
+<script>
+//get
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope, $http) {
+    console.log("adddata.htm..")
+
+    $scope.submit_form = function() {
+                $scope.myTxt = "You clicked submit!";
+                $http({
+                        url: "adddata.htm",
+                        method: "POST",
+                        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                        data: $scope.form
+                    }).then(function(response) {
+                        console.log("success:"+response)
+                    }, function(error) {
+                        $scope.status = status;
+                        console.log("error!!"+error)
+                    });
+            }
+});
+
+
+
+
+</script>
+<div ng-app='myApp' ng-controller='myCtrl' >
+<form ng-submit="submit_form()">
+
+<div class="main">
+    <h1>Add details</h1>
+    Enter Name: <input type="text" name="username" ng-model='form.username'>    <br/><br/> 
+    <input type="submit">
+</div>
+</form>
+<p>{{myTxt}}</p>
+
+<a href="index.htm">Back</a></div>
+</body>
+</html>

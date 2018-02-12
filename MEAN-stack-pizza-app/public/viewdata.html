@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<head>
+    <link rel = "stylesheet" type = "text/css" href = "css/styles.css" />
+  </head>
+
+<body>
+<script>
+//get
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope, $http) {
+  console.log("http1:")
+
+    $http.get('getitems').then(function(response) {
+        console.log("http2:"+response.data)
+        $scope.myData = response.data
+        console.log("http3:"+response.data)
+    });
+});
+
+
+</script>
+<div class="main">
+    <h1>Customer names</h1>
+<div ng-app='myApp' ng-controller='myCtrl'>
+  <ul>
+    <li ng-repeat="x in myData">{{x.name}}</li>
+  </ul>
+</div>
+<a href="index.htm">Back</a></div>
+</body>
+</html>
