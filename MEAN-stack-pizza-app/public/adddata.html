@@ -9,17 +9,25 @@
 <script>
 //get
 var app = angular.module('myApp', []);
+//var data = {username: "default-name1"}
 app.controller('myCtrl', function($scope, $http) {
     console.log("adddata.htm..")
 
     $scope.submit_form = function() {
                 $scope.myTxt = "You clicked submit!";
+                console.log("adddata1:"+$scope.form.username)
+                console.log("adddata2:"+JSON.stringify($scope.form))
+                console.log("adddata3:"+Object.toparams($scope.form))
+
+                //var temp = $scope.form
+               
                 $http({
-                        url: "adddata.htm",
-                        method: "POST",
-                        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-                        data: $scope.form
-                    }).then(function(response) {
+                     method: "POST",
+                     url: "appenddata",
+                     data: Object.toparams($scope.form),
+                     headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+                })
+                    .then(function(response) {
                         console.log("success:"+response)
                     }, function(error) {
                         $scope.status = status;
@@ -28,17 +36,23 @@ app.controller('myCtrl', function($scope, $http) {
             }
 });
 
-
-
+Object.toparams = function ObjecttoParams(obj) {
+    var p = [];
+    for (var key in obj) {
+        p.push(key + '=' + encodeURIComponent(obj[key]));
+    }
+    return p.join('&');
+};
 
 </script>
-<div ng-app='myApp' ng-controller='myCtrl' >
-<form ng-submit="submit_form()">
+<div ng-app='myApp' >
+<form name="saveTemplateData" ng-controller='myCtrl' ng-submit="submit_form()">
 
 <div class="main">
     <h1>Add details</h1>
-    Enter Name: <input type="text" name="username" ng-model='form.username'>    <br/><br/> 
-    <input type="submit">
+    Enter Name: <input type="text" name="form.username" ng-model='form.username'>    <br/><br/> 
+
+    <input type="submit"/>
 </div>
 </form>
 <p>{{myTxt}}</p>

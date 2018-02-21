@@ -11,7 +11,7 @@
             "type": "node",
             "request": "launch",
             "runtimeExecutable": "node",
-            "program": "${workspaceFolder}/webapp/nodejs_mongodb/server.js",
+            "program": "${workspaceFolder}/MEAN-stack-pizza-app/server.js",
             "restart": true,
             "console": "integratedTerminal",
             "internalConsoleOptions": "neverOpen",
