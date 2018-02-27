@@ -1,0 +1,51 @@
+<html>
+    <head>
+    </head>
+    <body>
+        <h1> Kids App! Welcome</h1>
+        <h1> All User list</h1>
+        <div id="usersdiv">
+            <table id="userstable" name="userstable" border="1">
+                <thead><th>Kids Name</th><th>Message</th></thead>
+                <tbody><td>HTML</td><td>Hello</td></tbody>
+            </table>
+        </div>
+
+        <h1> New Entry</h1> 
+        <form>
+            <label for="userid">UserId</label>
+            <input id="userid"></input>
+            <textarea id="message"></textarea>
+            <button id="SubmitButton">Submit</button>
+        </form>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script type="text/javascript">
+            var API_URL="https://tkecvrgthb.execute-api.us-east-1.amazonaws.com/prod/users";
+            $(document).ready(function(){
+                console.log("GET1");
+                try {
+                $.ajax({
+                    type:'GET',
+                    url: API_URL,
+                    success: function(data) {
+                        console.log("GET2 success");
+                        var $tr;
+                        $.each(data.rows,function(i, row) {
+                            console.log("GET22"+row.userid);
+                            console.log("GET22"+row.message);
+                            
+                            /*$('<tr>').attr('id',i)
+                                .append($('<td>').text(row.userid))
+                                .append($('<td>').text(row.message)).appendTo('userstable'); */
+                        });
+
+                        console.log("GET4 Exit");
+                    }
+                })
+            } catch(err) {
+                 console.log("Error:"+err);
+                }
+            })
+        </script>
+   </body>
+</html>

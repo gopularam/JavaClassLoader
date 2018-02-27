@@ -44,10 +44,6 @@ app.post('/appenddata', urlencodedParser, function(req,http_res) {
               http_res.sendStatus(200);
             }); 
          });
-
-
-
-
 })
 
 

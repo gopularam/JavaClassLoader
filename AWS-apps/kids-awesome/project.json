@@ -1,0 +1,8 @@
+{
+  "name": "kids_awesome",
+  "description": "kids edu",
+  "memory": 128,
+  "timeout": 5,
+  "role": "arn:aws:iam::640604032528:role/kids_awesome_lambda_function",
+  "environment": {}
+}
