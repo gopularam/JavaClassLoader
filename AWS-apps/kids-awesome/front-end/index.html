@@ -3,19 +3,21 @@
     </head>
     <body style="background-color:powderblue;">  
         <h1> Kids App! Welcome</h1>
-        <h1> All User list</h1>
+        <h2> Kids App- User list</h2>
         <div id="usersdiv">
             <table id="users" border=1>
-                <thead><th>Kid's Name</th><th>Join Date</th><th>Message</th></thead>
+                <thead><th>Select</th><th>Kid's Name</th><th>Join Date</th><th>Message</th></thead>
             </table>
         </div>
+
         <table>
             <tr><td><button type="button" id="reloadbutton">Reload Page</button></td>
                 <td><button type="button" id="removebutton">Remove User</button></td>
                 <td><button type="button" id="updatebutton">Update User</button></td>
             </tr>
         </table>
-        <h1> Add New Kids-App User</h1> 
+
+        <h2> Add New Kids-App User</h2> 
         <form>
                 <table border=1> 
 
@@ -33,21 +35,23 @@
                     url: API_URL,
                     success: function(data) {
                         data.Items.forEach(function(userlistitem) {
-                            $('#users').append('<tr><td>'+userlistitem.userid+'</td><td>'+userlistitem.joindate+'</td><td>'+userlistitem.message+'</td><tr>')
+                            $('#users').append('<tr><td><input type=radio name=radioName value='+userlistitem.userid+'/></td>'+
+                                '<td>'+userlistitem.userid+'</td><td>'+userlistitem.joindate+'</td><td>'+userlistitem.message+'</td><tr>')
                         })
                         console.log("GET3 success");
                     }
                 });
+                //Submit page
                 $("#submitbutton").on('click', function(){
                     // send ajax
                     console.log("POST223:"+$("#message").val());
-
                     $.ajax({
                         url: API_URL,
                         type : "POST",
                         contentType: "application/json; charset=utf-8",
                         dataType : 'json', // data type
                         data : JSON.stringify({
+                            "userop":"add",
                             "userid": $("#userid").val(),
                             "joindate":$("#joindate").val(),
                             "message":$("#message").val()
@@ -58,21 +62,46 @@
                         error: function(xhr, resp, text) {
                             console.log(xhr, resp, text);
                         }
-                    })
+                    });
                 });
 
-
+                //Remove
                 $("#removebutton").on('click', function(){
-                    console.log("Remove request placed");
-                    location.reload();
-                    console.log("Remove completed");
+                    var item = $('input[name=radioName]:checked').val();
+                    if(item=="" || item == undefined) {
+                        alert("Please select an item from user table");
+                    } else {
+                        item = item.substring(0, item.length-1);
+                        console.log("Remove request placed:"+item);
+                        $.ajax({
+                            url: API_URL,
+                            type : "POST",
+                            contentType: "application/json; charset=utf-8",
+                            dataType : 'json', // data type
+                            data : JSON.stringify({
+                                "userop":"remove",
+                                "userid": item,
+                                "joindate":0,
+                                "message":""
+                                }),
+                            success : function(result) {
+                                console.log("Remove223: SUCCESS: "+result)
+                            },
+                            error: function(xhr, resp, text) {
+                                console.log(xhr, resp, text);
+                            }
+                        });
+                        console.log("Remove completed");
+                    }
                 });
 
+                //Update
                 $("#updatebutton").on('click', function(){
                     console.log("Update request placed");
                     console.log("Update completed");
                 });
 
+                //Reload 
                 $("#reloadbutton").on('click', function(){
                     console.log("Reload request placed");
                     location.reload();
