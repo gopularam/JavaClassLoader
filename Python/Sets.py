@@ -1,0 +1,6 @@
+a = set(["aa", "bb", "cc", "aa"])
+b = set(["aa", "dd"])
+print(a)
+print(b)
+print("items non-duplicates in a,b")
+print(a.symmetric_difference(b))

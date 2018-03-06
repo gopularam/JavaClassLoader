@@ -8,6 +8,9 @@
 **Languages  
 -Java  
 -GO  
+-Python  
+  
+**Security and Machine Learning
  
-Finally on Security and Cryptography  
+
 
