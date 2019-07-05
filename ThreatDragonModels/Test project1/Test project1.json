@@ -1,0 +1,12 @@
+{
+  "summary": {
+    "title": "Test project1",
+    "owner": "Bhanu Prakash",
+    "description": "Application threat modelling"
+  },
+  "detail": {
+    "contributors": [],
+    "diagrams": [],
+    "reviewer": "George"
+  }
+}
